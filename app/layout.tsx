@@ -2,6 +2,9 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import StyledJsxRegistry from "./registry";
+import { Box, HStack, Text } from "@gluestack-ui/themed";
+import Layout from "@/layout/DashboardLayout";
+import AuthProvider from "@/context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +21,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="gs">
       <body className={inter.className}>
-        <Providers>
-          <StyledJsxRegistry>{children}</StyledJsxRegistry>
-        </Providers>
+        <main>
+          <Providers>
+            <AuthProvider>
+              <Layout />
+              <StyledJsxRegistry>{children}</StyledJsxRegistry>
+            </AuthProvider>
+          </Providers>
+        </main>
       </body>
     </html>
   );
 }
+//login

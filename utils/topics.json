@@ -1,0 +1,32 @@
+{
+    "topics":[
+        {
+            "id":1,
+            "topic":"Programming"
+        },
+        {
+            "id":2,
+            "topic":"Data Science"
+        },
+        {
+            "id":3,
+            "topic":"Technology"
+        },
+        {
+            "id":4,
+            "topic":"Self Improvement"
+        },
+        {
+            "id":5,
+            "topic":"Writing"
+        },
+        {
+            "id":6,
+            "topic":"Relationships"
+        },
+        {
+            "id":7,
+            "topic":"Machine Learning"
+        }
+    ]
+}

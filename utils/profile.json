@@ -1,0 +1,26 @@
+{
+    "profile":[
+        {
+            "id":1,
+            "profileImage":"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "AuthorName":"James Kwak",
+            "description":"Books: The Fear of Too Much Justice, Take Back Our Party, Economism, White House Burning, 13 Bankers. Former professor. Co-founder, Guidewire Software. Cellist."
+
+        },
+        {
+            "id":2,
+            "profileImage":"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "AuthorName":"XXimena Vengoechea",
+            "description":"Writer, UX Researcher, Author Rest Easy (9/26/23), Listen Like You Mean It ('21). Previously, user research @ TWTR, PINS, etc. ximenavengoechea.com/rest-easy"
+
+        },
+        {
+            "id":3,
+            "profileImage":"https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "AuthorName":"Gideon M-K; Health Nerd",
+            "description":"Epidemiologist. Writer. Podcaster. Twitter https://twitter.com/GidMK FB www.facebook.com/gidmkhealthnerd/ Email gidmk.healthnerd@gmail.com"
+
+        }
+       
+    ]
+}
