@@ -1,6 +1,6 @@
 "use client";
-import { useAuth } from "@/context/AuthProvider";
-import withAuth from "@/withAuth";
+import { useAuth } from "@/app/context/AuthProvider";
+import withAuth from "@/app/hoc/withAuth";
 import {
   Box,
   Button,

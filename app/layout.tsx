@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import StyledJsxRegistry from "./registry";
 import { Box, HStack, Text } from "@gluestack-ui/themed";
-import Layout from "@/layout/DashboardLayout";
-import AuthProvider from "@/context/AuthProvider";
+import Layout from "@/app/layout/DashboardLayout";
+import AuthProvider from "@/app/context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

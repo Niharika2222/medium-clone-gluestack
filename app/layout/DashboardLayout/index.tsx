@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@/context/AuthProvider";
+import { useAuth } from "@/app/context/AuthProvider";
 import { Box, HStack, Pressable, Text } from "@gluestack-ui/themed";
 import { useRouter } from "next/navigation";
 import { TfiWrite } from "react-icons/tfi";
@@ -45,7 +45,7 @@ const Layout = () => {
               >
                 <Box bgColor="$green500" rounded={"$full"} h={32} w={32}>
                   <Text textAlign="center" size="lg" color="$white" mt="$0.5">
-                    {usernamed.charAt(1).toUpperCase()}
+                    {usernamed.charAt(0).toUpperCase()}
                   </Text>
                 </Box>
               </Pressable>

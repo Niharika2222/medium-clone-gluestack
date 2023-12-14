@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import DashboardPage from "@/components/screens/dashboard";
-import withAuth from "@/withAuth";
+import DashboardPage from "@/app/components/screens/dashboard";
+import withAuth from "@/app/hoc/withAuth";
 
 const Dashboard = () => {
   return (

@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUsers(updatedUsers);
     setUsernamed(username);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-    localStorage.setItem("loggedInUser", JSON.stringify(username));
+    localStorage.setItem("loggedInUser", username);
     router.push("/");
   };
   const logout = () => {

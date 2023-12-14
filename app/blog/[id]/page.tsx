@@ -13,7 +13,7 @@ import { TfiComment } from "react-icons/tfi";
 import { CiSaveDown2, CiShare1 } from "react-icons/ci";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { BsPlayCircle } from "react-icons/bs";
-import withAuth from "@/withAuth";
+import withAuth from "@/app/hoc/withAuth";
 
 const page = () => {
   return (

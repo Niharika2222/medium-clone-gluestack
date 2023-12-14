@@ -27,7 +27,7 @@
 
 "use client";
 import React, { useEffect } from "react";
-import { useAuth } from "@/context/AuthProvider";
+import { useAuth } from "@/app/context/AuthProvider";
 import { usePathname, useRouter } from "next/navigation";
 const withAuth = (WrappedComponent: React.ComponentType) => {
   const Wrapper = (props: any) => {
