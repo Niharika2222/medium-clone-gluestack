@@ -1,4 +1,4 @@
-import { Image } from "@gluestack-ui/themed";
+import { Button, ButtonText, Image } from "@gluestack-ui/themed";
 import { Box, HStack, Heading, Text } from "@gluestack-ui/themed";
 import React from "react";
 import RecommendedTopics from "../recommendedTopics";
@@ -11,9 +11,24 @@ import { BsPlayCircle } from "react-icons/bs";
 type cardProps = {
   profileImage: string;
   blogImage: string;
+  username: string;
+  date: string;
+  heading: string;
+  description: string;
+  readTime: string;
+  tag: string;
 };
 
-const Card = ({ profileImage, blogImage }: cardProps) => {
+const Card = ({
+  profileImage,
+  blogImage,
+  username,
+  date,
+  heading,
+  description,
+  readTime,
+  tag,
+}: cardProps) => {
   return (
     <HStack w="$5/6" borderBottomWidth="$1" borderBottomColor="$trueGray200">
       <Box w="$4/5">
@@ -29,14 +44,13 @@ const Card = ({ profileImage, blogImage }: cardProps) => {
             }}
           />
           <Text size="sm" color="$black">
-            Kim Kelly Stamp in The Narrative Arc
+            {username}
           </Text>
           <Box>.</Box>
-          <Text size="sm">Sep 21 Member-only</Text>
+          <Text size="sm">{date}</Text>
         </HStack>
         <Heading color="$black" lineHeight={"$lg"} paddingTop={"$2"}>
-          If You Want to Be a Creator, Delete All (But Two) Social Media
-          Platforms
+          {heading}
         </Heading>
         <Text
           //@ts-ignore
@@ -48,10 +62,7 @@ const Card = ({ profileImage, blogImage }: cardProps) => {
           }}
           paddingTop={"$2"}
         >
-          In October 2022, during the whole Elon Musk debacle, I finally deleted
-          Twitter from my phone. Around the same time, I also logged out of In
-          October 2022, during the whole Elon Musk debacle, I finally deleted
-          Twitter from my phone. Around the same time, I also logged out of
+          {description}
         </Text>
         <HStack
           py={"$10"}
@@ -60,9 +71,21 @@ const Card = ({ profileImage, blogImage }: cardProps) => {
           marginRight={"$5"}
         >
           <HStack alignItems="center">
-            <RecommendedTopics text={"Productivity"} />
+            <Button
+              size="xs"
+              variant={"solid"}
+              action="primary"
+              isDisabled={false}
+              isFocusVisible={false}
+              bgColor="$trueGray200"
+              rounded={"$full"}
+            >
+              <ButtonText color="#242424" size="sm" fontWeight="$normal">
+                {tag}
+              </ButtonText>
+            </Button>
             <Text size="xs" paddingLeft={"$1"}>
-              8 min read
+              {readTime}
             </Text>
 
             <Text size="xs"> . Selected for you</Text>

@@ -13,12 +13,17 @@ import {
   Textarea,
   TextareaInput,
   FormControlErrorText,
+  ModalFooter,
+  Toast,
 } from "@gluestack-ui/themed";
 import { InputField } from "@gluestack-ui/themed";
 import { FormControl } from "@gluestack-ui/themed";
 import { Center } from "@gluestack-ui/themed";
 import React, { useEffect } from "react";
 import data from "../../utils/blogs.json";
+import { useAuth } from "@/context/AuthProvider";
+import { useToast } from "@gluestack-ui/themed";
+import { ToastDescription } from "@gluestack-ui/themed";
 
 const AddBlogModal = ({
   showModal,
@@ -27,31 +32,52 @@ const AddBlogModal = ({
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const { uploadBlog } = useAuth();
   const [isTitleValid, setIsTitleValid] = React.useState(false);
   const [isDescriptionValid, setIsDescriptionValid] = React.useState(false);
   const [isImageValid, setIsImageValid] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [image, setImage] = React.useState("");
-
+  const toast = useToast();
   const handleSubmit = () => {
     if (title && content && image) {
       const newAddBlog = {
         id: data.blogs.length + 1,
-        profileImage: "",
+        profileImage:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS280A02yZt4POsUaiIhN4RTJwuaiA6NNhf0Q&usqp=CAU",
         name: "Kim Kelly Stamp in The Narrative Arc",
         date: new Date().toISOString(),
         heading: title,
-        description: "",
+        description: content,
         blogImage: image,
         tag: "Social Media",
         readTime: "8 min read",
       };
-      data.blogs.push(newAddBlog);
+      uploadBlog?.(newAddBlog);
+      toast.show({
+        placement: "bottom left",
+        render: ({ id }) => {
+          const toastId = "toast-" + id;
+          return (
+            <Toast
+              nativeID={toastId}
+              action="attention"
+              variant="solid"
+              bgColor="$green500"
+            >
+              <ToastDescription color="$white">
+                Blog added Successfully!!
+              </ToastDescription>
+            </Toast>
+          );
+        },
+      });
+
       setShowModal(false);
     } else {
       setIsTitleValid(!title);
-      setIsDescriptionValid(content.length < 30);
+      setIsDescriptionValid(content.length < 20);
       setIsImageValid(!image);
     }
   };
@@ -66,7 +92,7 @@ const AddBlogModal = ({
   };
   const handleContentChange = (e: any) => {
     setContent(e.target.value);
-    if (e.target.value.length < 50) {
+    if (e.target.value.length < 20) {
       setIsDescriptionValid(true);
     } else {
       setIsDescriptionValid(false);
@@ -101,18 +127,7 @@ const AddBlogModal = ({
         <ModalContent>
           <ModalHeader>
             <HStack w="$full" justifyContent="space-between">
-              <Heading size="lg">Your story</Heading>
-              <Button
-                size="sm"
-                borderRadius="$full"
-                borderWidth="$0"
-                onPress={() => {
-                  handleSubmit();
-                }}
-                isDisabled={isTitleValid || isDescriptionValid || isImageValid}
-              >
-                <ButtonText fontWeight="$normal">Publish</ButtonText>
-              </Button>
+              <Heading size="lg">Create Blog</Heading>
             </HStack>
           </ModalHeader>
 
@@ -139,7 +154,7 @@ const AddBlogModal = ({
               {isDescriptionValid ? (
                 <FormControlError>
                   <FormControlErrorText>
-                    More than 50 characters is required
+                    More than 20 characters is required
                   </FormControlErrorText>
                 </FormControlError>
               ) : null}
@@ -161,6 +176,19 @@ const AddBlogModal = ({
               ) : null}
             </FormControl>
           </ModalBody>
+          <ModalFooter>
+            <Button
+              size="sm"
+              action="positive"
+              borderWidth="$0"
+              onPress={() => {
+                handleSubmit();
+              }}
+              isDisabled={isTitleValid || isDescriptionValid || isImageValid}
+            >
+              <ButtonText fontWeight="$normal">Publish</ButtonText>
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </Center>

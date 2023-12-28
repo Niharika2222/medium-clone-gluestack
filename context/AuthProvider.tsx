@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import data from "../utils/blogs.json";
 type User = {
   username: string;
 };
@@ -8,19 +9,35 @@ type User = {
 type UserObject = {
   [key: string]: User;
 };
+type BlogSchema = {
+  id: number;
+  profileImage: string;
+  name: string;
+  date: string;
+  heading: string;
+  description: string;
+  tag: string;
+  blogImage: string;
+  readTime: string;
+};
 type AuthInitialState = {
   users: UserObject;
   login: (username: string) => void;
   logout: any;
   usernamed: string;
+  uploadBlog: (blog: BlogSchema) => void;
+  blogs: [];
 };
 const AuthContext = React.createContext<Partial<AuthInitialState>>({
   users: {},
+  blogs: [],
 });
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<UserObject>({});
   const [usernamed, setUsernamed] = useState("");
+  const [blogs, setBlogs] = useState<any>([]);
   const router = useRouter();
+
   const login = (username: string) => {
     const updatedUsers = { ...users, [username]: { username } };
     setUsers(updatedUsers);
@@ -36,9 +53,23 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     router.push("/login");
   };
 
+  const uploadBlog = (newBlog: BlogSchema) => {
+    const updatedBlogs = [...blogs, newBlog];
+    setBlogs(updatedBlogs);
+    localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+  };
+
   useEffect(() => {
     const storedUsers = localStorage.getItem("users");
     const loggedIn = localStorage.getItem("loggedInUser") || "";
+    const storedBlogs = localStorage.getItem("blogs") || "";
+    console.log(storedBlogs, "abc");
+    if (!storedBlogs) {
+      localStorage.setItem("blogs", JSON.stringify(data.blogs));
+      setBlogs(data.blogs);
+    } else {
+      setBlogs(JSON.parse(storedBlogs));
+    }
     setUsernamed(loggedIn);
     if (storedUsers) {
       setUsers(JSON.parse(storedUsers));
@@ -46,7 +77,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ users, login, logout, usernamed }}>
+    <AuthContext.Provider
+      value={{ users, login, logout, usernamed, uploadBlog, blogs }}
+    >
       {children}
     </AuthContext.Provider>
   );

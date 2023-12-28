@@ -108,12 +108,13 @@ const page = () => {
           />
         </Box>
         <Box>
-          <Text fontSize={"$xl"} py="$2">
+          <Text fontSize={20} color="#242424" lineHeight={32} mb={20}>
             The concept of habits became extremely popular in the recent years,
             mostly due to the personal development wave brought up by the Gen Z
-            culture.
+            culture. Also, due to the books that appeared in the recent years,
+            out of which, the most famous and a favorite of mine, Atomic Habits.
           </Text>
-          <Text fontSize={"$xl"} py="$2">
+          <Text fontSize={20} color="#242424" lineHeight={32} mb={20}>
             Also, due to the books that appeared in the recent years, out of
             which, the most famous and a favorite of mine, Atomic Habits.
           </Text>

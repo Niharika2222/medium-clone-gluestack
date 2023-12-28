@@ -3,21 +3,25 @@ import StaffPick from "@/components/staffPick";
 import SuggestedProfile from "@/components/suggestedProfile";
 import { Divider, Heading, Link } from "@gluestack-ui/themed";
 import { Box, HStack } from "@gluestack-ui/themed";
-import React from "react";
-import { blogs } from "../../../utils/blogs.json";
+import React, { useState, useEffect } from "react";
 import { staff } from "../../../utils/staff.json";
 import { profile } from "../../../utils/profile.json";
 import { topics } from "../../../utils/topics.json";
 import RecommendedTopics from "@/components/recommendedTopics";
 import withAuth from "@/hoc/withAuth";
+import data from "../../../utils/blogs.json";
+import { AnyARecord } from "dns";
+import { useAuth } from "@/context/AuthProvider";
 
 const DashboardPage = () => {
+  const { blogs } = useAuth();
+
   return (
     <HStack w="$full">
       <Box w="$2/3" paddingLeft={"$40"}>
         <HStack>
           <Box w="$full" paddingTop={"$32"}>
-            {blogs.map((blog) => {
+            {blogs?.map((blog: any) => {
               return (
                 <Box paddingBottom={"$16"}>
                   <Link href={`/blog/${blog.id}`}>
@@ -25,6 +29,12 @@ const DashboardPage = () => {
                       key={blog.id}
                       blogImage={blog.blogImage}
                       profileImage={blog.profileImage}
+                      username={blog.name}
+                      date={blog.date}
+                      heading={blog.heading}
+                      description={blog.description}
+                      readTime={blog.readTime}
+                      tag={blog.tag}
                     />
                   </Link>
                 </Box>
