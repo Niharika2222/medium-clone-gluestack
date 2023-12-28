@@ -4,7 +4,7 @@ import { Providers } from "./providers";
 import StyledJsxRegistry from "./registry";
 import { Box, HStack, Text } from "@gluestack-ui/themed";
 import Layout from "@/app/layout/DashboardLayout";
-import AuthProvider from "@/app/context/AuthProvider";
+import AuthProvider from "@/context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

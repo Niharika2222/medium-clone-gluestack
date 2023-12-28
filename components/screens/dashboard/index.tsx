@@ -1,14 +1,14 @@
-import Card from "@/app/components/cards";
-import StaffPick from "@/app/components/staffPick";
-import SuggestedProfile from "@/app/components/suggestedProfile";
+import Card from "@/components/cards";
+import StaffPick from "@/components/staffPick";
+import SuggestedProfile from "@/components/suggestedProfile";
 import { Divider, Heading, Link } from "@gluestack-ui/themed";
 import { Box, HStack } from "@gluestack-ui/themed";
 import React from "react";
-import { blogs } from "../../../../utils/blogs.json";
-import { staff } from "../../../../utils/staff.json";
-import { profile } from "../../../../utils/profile.json";
-import { topics } from "../../../../utils/topics.json";
-import RecommendedTopics from "@/app/components/recommendedTopics";
+import { blogs } from "../../../utils/blogs.json";
+import { staff } from "../../../utils/staff.json";
+import { profile } from "../../../utils/profile.json";
+import { topics } from "../../../utils/topics.json";
+import RecommendedTopics from "@/components/recommendedTopics";
 import withAuth from "@/app/hoc/withAuth";
 
 const DashboardPage = () => {

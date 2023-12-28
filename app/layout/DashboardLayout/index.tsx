@@ -1,13 +1,15 @@
 "use client";
-import { useAuth } from "@/app/context/AuthProvider";
+import { useAuth } from "@/context/AuthProvider";
 import { Box, HStack, Pressable, Text } from "@gluestack-ui/themed";
 import { useRouter } from "next/navigation";
 import { TfiWrite } from "react-icons/tfi";
 import React, { useEffect, useState } from "react";
+import AddBlogModal from "@/components/addBlogModal";
 const Layout = () => {
+  const [showModal, setShowModal] = useState(false);
   const { users, logout, usernamed } = useAuth();
   console.log({ usernamed });
-  //   const firstLetter = usernamed ? usernamed.charAt(1).toUpperCase() : "";
+
   const handleLogout = () => {
     const loggedIn = localStorage.getItem("loggedInUser") || "";
     if (loggedIn) {
@@ -31,13 +33,14 @@ const Layout = () => {
           </Box>
           <Box>
             <HStack space="2xl">
-              <HStack space="sm" alignItems="center">
-                <Text>
-                  <TfiWrite size={18} />
-                </Text>
-                <Text alignItems="center">Write</Text>
-              </HStack>
-
+              <Pressable onPress={() => setShowModal(true)}>
+                <HStack space="sm" alignItems="center" mt="$1">
+                  <Text>
+                    <TfiWrite size={18} />
+                  </Text>
+                  <Text alignItems="center">Write</Text>
+                </HStack>
+              </Pressable>
               <Pressable
                 onPress={() => {
                   handleLogout();
@@ -72,6 +75,7 @@ const Layout = () => {
           </Box>
         </HStack>
       )}
+      <AddBlogModal showModal={showModal} setShowModal={setShowModal} />
       {/* <HStack
         justifyContent="space-around"
         alignItems="center"

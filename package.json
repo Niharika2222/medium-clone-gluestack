@@ -26,15 +26,18 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.12.0",
-    "react-native-svg": "13.4.0",
+    "react-native-svg": "^13.4.0",
+    "react-native-svg-web": "^1.0.9",
     "react-native-web": "^0.19.7"
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.3",
     "@storybook/addon-essentials": "^8.0.0-alpha.0",
     "@storybook/addon-interactions": "^8.0.0-alpha.0",
     "@storybook/addon-links": "^8.0.0-alpha.0",
     "@storybook/addon-onboarding": "^1.0.9",
+    "@storybook/addon-react-native-web": "^0.0.21",
     "@storybook/blocks": "^8.0.0-alpha.0",
     "@storybook/nextjs": "^8.0.0-alpha.0",
     "@storybook/react": "^8.0.0-alpha.0",
@@ -44,6 +47,7 @@
     "@types/react-dom": "18.2.6",
     "@types/react-native": "^0.72.5",
     "babel-loader": "^8.3.0",
+    "babel-plugin-react-native-web": "^0.19.9",
     "storybook": "^8.0.0-alpha.0",
     "typescript": "5.1.3"
   }

@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@/app/context/AuthProvider";
+import { useAuth } from "@/context/AuthProvider";
 import withAuth from "@/app/hoc/withAuth";
 import {
   Box,
