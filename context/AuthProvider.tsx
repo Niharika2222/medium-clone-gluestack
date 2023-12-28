@@ -28,6 +28,7 @@ type AuthInitialState = {
   uploadBlog: (blog: BlogSchema) => void;
   blogs: [];
   setBlogs: any;
+  filteredTag: any;
 };
 const AuthContext = React.createContext<Partial<AuthInitialState>>({
   users: {},
@@ -37,6 +38,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [users, setUsers] = useState<UserObject>({});
   const [usernamed, setUsernamed] = useState("");
   const [blogs, setBlogs] = useState<any>([]);
+  const [selectedTag, setSelectedTag] = useState<any>(null);
   const router = useRouter();
 
   const login = (username: string) => {
@@ -60,6 +62,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
   };
 
+  const filteredTag = (tag: string) => {
+    setSelectedTag(tag);
+  };
+
   useEffect(() => {
     const storedUsers = localStorage.getItem("users");
     const loggedIn = localStorage.getItem("loggedInUser") || "";
@@ -79,7 +85,18 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ users, login, logout, usernamed, uploadBlog, blogs, setBlogs }}
+      value={{
+        users,
+        login,
+        logout,
+        usernamed,
+        uploadBlog,
+        blogs: selectedTag
+          ? blogs.filter((item: any) => item.tag.includes(selectedTag))
+          : blogs,
+        setBlogs,
+        filteredTag,
+      }}
     >
       {children}
     </AuthContext.Provider>

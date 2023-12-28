@@ -20,7 +20,7 @@ import { AnyARecord } from "dns";
 import { useAuth } from "@/context/AuthProvider";
 
 const DashboardPage = () => {
-  const { blogs, setBlogs } = useAuth();
+  const { blogs, filteredTag } = useAuth();
 
   return (
     <HStack w="$full">
@@ -92,12 +92,7 @@ const DashboardPage = () => {
                     marginBottom="$2"
                     paddingTop={"$2"}
                     onPress={() => {
-                      const filteredBlogs = blogs?.filter((tags: any) => {
-                        if (tags.tag.includes(item.topic)) {
-                          return item;
-                        }
-                      });
-                      setBlogs(filteredBlogs);
+                      filteredTag(item?.topic);
                     }}
                   >
                     {" "}
