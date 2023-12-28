@@ -1,4 +1,10 @@
-import { Box, Button, ButtonText } from "@gluestack-ui/themed";
+import {
+  Badge,
+  BadgeText,
+  Box,
+  Button,
+  ButtonText,
+} from "@gluestack-ui/themed";
 import React from "react";
 
 type RecommendedTopicsProps = {
@@ -7,19 +13,29 @@ type RecommendedTopicsProps = {
 
 const RecommendedTopics = ({ text }: RecommendedTopicsProps) => {
   return (
-    <Button
-      size="xs"
-      variant={"solid"}
-      action="primary"
-      isDisabled={false}
-      isFocusVisible={false}
-      bgColor="$trueGray200"
-      rounded={"$full"}
+    <Badge
+      size="md"
+      variant="solid"
+      borderRadius="$full"
+      backgroundColor="$trueGray200"
     >
-      <ButtonText color="#242424" size="sm" fontWeight="$normal">
+      <BadgeText p="$1.5" color="#242424" fontSize="$xs" fontWeight="$normal">
         {text}
-      </ButtonText>
-    </Button>
+      </BadgeText>
+    </Badge>
+    // <Button
+    //   size="xs"
+    //   variant={"solid"}
+    //   action="primary"
+    //   isDisabled={false}
+    //   isFocusVisible={false}
+    //   bgColor="$trueGray200"
+    //   rounded={"$full"}
+    // >
+    //   <ButtonText color="#242424" size="sm" fontWeight="$normal">
+    //     {text}
+    //   </ButtonText>
+    // </Button>
   );
 };
 

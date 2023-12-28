@@ -27,6 +27,7 @@ type AuthInitialState = {
   usernamed: string;
   uploadBlog: (blog: BlogSchema) => void;
   blogs: [];
+  setBlogs: any;
 };
 const AuthContext = React.createContext<Partial<AuthInitialState>>({
   users: {},
@@ -78,7 +79,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ users, login, logout, usernamed, uploadBlog, blogs }}
+      value={{ users, login, logout, usernamed, uploadBlog, blogs, setBlogs }}
     >
       {children}
     </AuthContext.Provider>

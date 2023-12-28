@@ -1,7 +1,13 @@
 import Card from "@/components/cards";
 import StaffPick from "@/components/staffPick";
 import SuggestedProfile from "@/components/suggestedProfile";
-import { Divider, Heading, Link } from "@gluestack-ui/themed";
+import {
+  Center,
+  Divider,
+  Heading,
+  Link,
+  Pressable,
+} from "@gluestack-ui/themed";
 import { Box, HStack } from "@gluestack-ui/themed";
 import React, { useState, useEffect } from "react";
 import { staff } from "../../../utils/staff.json";
@@ -14,32 +20,36 @@ import { AnyARecord } from "dns";
 import { useAuth } from "@/context/AuthProvider";
 
 const DashboardPage = () => {
-  const { blogs } = useAuth();
+  const { blogs, setBlogs } = useAuth();
 
   return (
     <HStack w="$full">
       <Box w="$2/3" paddingLeft={"$40"}>
         <HStack>
           <Box w="$full" paddingTop={"$32"}>
-            {blogs?.map((blog: any) => {
-              return (
-                <Box paddingBottom={"$16"}>
-                  <Link href={`/blog/${blog.id}`}>
-                    <Card
-                      key={blog.id}
-                      blogImage={blog.blogImage}
-                      profileImage={blog.profileImage}
-                      username={blog.name}
-                      date={blog.date}
-                      heading={blog.heading}
-                      description={blog.description}
-                      readTime={blog.readTime}
-                      tag={blog.tag}
-                    />
-                  </Link>
-                </Box>
-              );
-            })}
+            {blogs?.length === 0 ? (
+              <Center mr="$24">No Blogs Found</Center>
+            ) : (
+              blogs?.map((blog: any) => {
+                return (
+                  <Box paddingBottom={"$16"}>
+                    <Link href={`/blog/${blog.id}`}>
+                      <Card
+                        key={blog.id}
+                        blogImage={blog.blogImage}
+                        profileImage={blog.profileImage}
+                        username={blog.name}
+                        date={blog.date}
+                        heading={blog.heading}
+                        description={blog.description}
+                        readTime={blog.readTime}
+                        tag={blog.tag}
+                      />
+                    </Link>
+                  </Box>
+                );
+              })
+            )}
           </Box>
           <Divider
             orientation="vertical"
@@ -76,14 +86,23 @@ const DashboardPage = () => {
             <Box w="$80" flexDirection="row" flexWrap="wrap">
               {topics.map((item) => {
                 return (
-                  <Box
+                  <Pressable
                     key={item.id}
                     marginRight="$2"
                     marginBottom="$2"
                     paddingTop={"$2"}
+                    onPress={() => {
+                      const filteredBlogs = blogs?.filter((tags: any) => {
+                        if (tags.tag.includes(item.topic)) {
+                          return item;
+                        }
+                      });
+                      setBlogs(filteredBlogs);
+                    }}
                   >
+                    {" "}
                     <RecommendedTopics text={item.topic} />
-                  </Box>
+                  </Pressable>
                 );
               })}
             </Box>

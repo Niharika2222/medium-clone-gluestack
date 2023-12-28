@@ -1,4 +1,10 @@
-import { Button, ButtonText, Image } from "@gluestack-ui/themed";
+import {
+  Badge,
+  BadgeText,
+  Button,
+  ButtonText,
+  Image,
+} from "@gluestack-ui/themed";
 import { Box, HStack, Heading, Text } from "@gluestack-ui/themed";
 import React from "react";
 import RecommendedTopics from "../recommendedTopics";
@@ -71,19 +77,21 @@ const Card = ({
           marginRight={"$5"}
         >
           <HStack alignItems="center">
-            <Button
-              size="xs"
-              variant={"solid"}
-              action="primary"
-              isDisabled={false}
-              isFocusVisible={false}
-              bgColor="$trueGray200"
-              rounded={"$full"}
+            <Badge
+              size="md"
+              variant="solid"
+              borderRadius="$full"
+              backgroundColor="$trueGray200"
             >
-              <ButtonText color="#242424" size="sm" fontWeight="$normal">
+              <BadgeText
+                p="$1.5"
+                color="#242424"
+                fontSize="$xs"
+                fontWeight="$normal"
+              >
                 {tag}
-              </ButtonText>
-            </Button>
+              </BadgeText>
+            </Badge>
             <Text size="xs" paddingLeft={"$1"}>
               {readTime}
             </Text>
