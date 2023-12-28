@@ -21,13 +21,26 @@ import { useAuth } from "@/context/AuthProvider";
 
 const DashboardPage = () => {
   const { blogs, filteredTag } = useAuth();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <HStack w="$full">
       <Box w="$2/3" paddingLeft={"$40"}>
         <HStack>
           <Box w="$full" paddingTop={"$32"}>
-            {blogs?.length === 0 ? (
+            {loading ? (
+              <Center mr="$24">Loading...</Center>
+            ) : blogs?.length === 0 ? (
               <Center mr="$24">No Blogs Found</Center>
             ) : (
               blogs?.map((blog: any) => {
