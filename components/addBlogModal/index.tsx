@@ -14,7 +14,6 @@ import {
   TextareaInput,
   FormControlErrorText,
 } from "@gluestack-ui/themed";
-import { FormControlErrorIcon } from "@gluestack-ui/themed";
 import { InputField } from "@gluestack-ui/themed";
 import { FormControl } from "@gluestack-ui/themed";
 import { Center } from "@gluestack-ui/themed";
@@ -29,7 +28,7 @@ const AddBlogModal = ({
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isTitleValid, setIsTitleValid] = React.useState(false);
-  const [isContentValid, setIsContentValid] = React.useState(false);
+  const [isDescriptionValid, setIsDescriptionValid] = React.useState(false);
   const [isImageValid, setIsImageValid] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
@@ -37,7 +36,7 @@ const AddBlogModal = ({
 
   const handleSubmit = () => {
     if (title && content && image) {
-      const newBlog = {
+      const newAddBlog = {
         id: data.blogs.length + 1,
         profileImage: "",
         name: "Kim Kelly Stamp in The Narrative Arc",
@@ -48,11 +47,11 @@ const AddBlogModal = ({
         tag: "Social Media",
         readTime: "8 min read",
       };
-      data.blogs.push(newBlog);
+      data.blogs.push(newAddBlog);
       setShowModal(false);
     } else {
       setIsTitleValid(!title);
-      setIsContentValid(content.length < 30);
+      setIsDescriptionValid(content.length < 30);
       setIsImageValid(!image);
     }
   };
@@ -67,10 +66,10 @@ const AddBlogModal = ({
   };
   const handleContentChange = (e: any) => {
     setContent(e.target.value);
-    if (e.target.value.length < 30) {
-      setIsContentValid(true);
+    if (e.target.value.length < 50) {
+      setIsDescriptionValid(true);
     } else {
-      setIsContentValid(false);
+      setIsDescriptionValid(false);
     }
   };
 
@@ -83,7 +82,7 @@ const AddBlogModal = ({
     }
   };
   useEffect(() => {
-    setIsContentValid(false);
+    setIsDescriptionValid(false);
     setIsImageValid(false);
     setIsTitleValid(false);
     setTitle("");
@@ -102,16 +101,15 @@ const AddBlogModal = ({
         <ModalContent>
           <ModalHeader>
             <HStack w="$full" justifyContent="space-between">
-              <Heading size="lg">Your new story</Heading>
+              <Heading size="lg">Your story</Heading>
               <Button
                 size="sm"
-                action="positive"
                 borderRadius="$full"
                 borderWidth="$0"
                 onPress={() => {
                   handleSubmit();
                 }}
-                isDisabled={isTitleValid || isContentValid || isImageValid}
+                isDisabled={isTitleValid || isDescriptionValid || isImageValid}
               >
                 <ButtonText fontWeight="$normal">Publish</ButtonText>
               </Button>
@@ -131,17 +129,17 @@ const AddBlogModal = ({
                 </FormControlError>
               ) : null}
             </FormControl>
-            <FormControl isRequired={true} isInvalid={isContentValid}>
+            <FormControl isRequired={true} isInvalid={isDescriptionValid}>
               <Textarea borderWidth="$1" h="$80" mt="$3">
                 <TextareaInput
                   placeholder="Tell your story..."
                   onChange={handleContentChange}
                 />
               </Textarea>
-              {isContentValid ? (
+              {isDescriptionValid ? (
                 <FormControlError>
                   <FormControlErrorText>
-                    Content more than 30 characters is required
+                    More than 50 characters is required
                   </FormControlErrorText>
                 </FormControlError>
               ) : null}

@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/context/AuthProvider";
-import withAuth from "@/app/hoc/withAuth";
+import withAuth from "@/hoc/withAuth";
 import {
   Box,
   Button,
@@ -19,7 +19,6 @@ const LoginPage = () => {
   const [inputValue, setInputValue] = useState("");
   const authState = useAuth();
   const router = useRouter();
-  console.log({ authState, a: authState.users });
 
   const handleLogin = () => {
     if (inputValue.trim() === "") {
@@ -54,7 +53,6 @@ const LoginPage = () => {
               placeholder="Enter Username"
               value={inputValue}
               onChange={(e) => {
-                console.log(e.nativeEvent.text);
                 setInputValue(e.nativeEvent.text);
               }}
             />

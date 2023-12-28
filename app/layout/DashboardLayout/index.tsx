@@ -8,7 +8,6 @@ import AddBlogModal from "@/components/addBlogModal";
 const Layout = () => {
   const [showModal, setShowModal] = useState(false);
   const { users, logout, usernamed } = useAuth();
-  console.log({ usernamed });
 
   const handleLogout = () => {
     const loggedIn = localStorage.getItem("loggedInUser") || "";

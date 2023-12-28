@@ -2,7 +2,7 @@
 import React from "react";
 
 import DashboardPage from "@/components/screens/dashboard";
-import withAuth from "@/app/hoc/withAuth";
+import withAuth from "@/hoc/withAuth";
 
 const Dashboard = () => {
   return (

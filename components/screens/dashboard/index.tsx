@@ -9,7 +9,7 @@ import { staff } from "../../../utils/staff.json";
 import { profile } from "../../../utils/profile.json";
 import { topics } from "../../../utils/topics.json";
 import RecommendedTopics from "@/components/recommendedTopics";
-import withAuth from "@/app/hoc/withAuth";
+import withAuth from "@/hoc/withAuth";
 
 const DashboardPage = () => {
   return (
